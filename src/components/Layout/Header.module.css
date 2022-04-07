@@ -1,0 +1,22 @@
+.header{
+    padding:20px;
+    border:1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    margin: 0 10px;
+
+}
+
+nav{
+    display: inline;
+    float: right;
+    margin: 0 10px;
+}
+
+h3{
+    display:inline;
+}

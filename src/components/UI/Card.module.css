@@ -1,0 +1,10 @@
+.card {
+  /*   max-width: 25%;
+  margin: 30px auto;
+  background: #f4f4f4;
+  color: #333; */
+}
+
+.card:hover {
+  /* box-shadow: 7px 7px rgb(154, 174, 180); */
+}

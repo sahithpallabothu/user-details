@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  max-width: 400px;
+  height: 450px;
+  margin: 20px auto;
+  background: #f4f4f4;
+}
+
+.container:hover {
+  box-shadow: 7px 7px rgb(154, 174, 180);
+}
+
+input {
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.formControl {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .container {
+    margin: 30px;
+  }
+}

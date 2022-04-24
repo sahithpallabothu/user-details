@@ -2,14 +2,31 @@ import classes from "./Login.module.css";
 import Card from "../components/UI/Card";
 import React, { useRef } from "react";
 import Button from "../components/UI/Button";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const userEmailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
-  const loginFormHandler = (event: React.FormEvent) => {
+  const loginFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Form Submitted");
+    const data = {
+      userEmail: userEmailRef.current?.value,
+      userPassword: passwordRef.current?.value,
+    };
+
+    const loginResult = await fetch("http://localhost:64763/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", //to include the cookie in the response
+      body: JSON.stringify(data),
+    });
+
+    const response = await loginResult.json();
+    if (response) {
+      navigate("/user");
+    }
   };
 
   return (

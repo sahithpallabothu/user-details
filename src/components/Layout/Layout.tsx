@@ -1,10 +1,11 @@
 import { Fragment } from "react";
+import { UserData } from "../../Pages/User";
 import Header from "./Header";
 
-const Layout: React.FC = (props) => {
+const Layout: React.FC<{ data: UserData }> = (props) => {
   return (
     <Fragment>
-      <Header />
+      <Header data={props.data} />
       {props.children}
     </Fragment>
   );

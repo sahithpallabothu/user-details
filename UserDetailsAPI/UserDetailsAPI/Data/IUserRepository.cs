@@ -10,5 +10,8 @@ namespace UserDetailsAPI.Data
     {
         User Create(User user);
         User CheckUserLogin(string email, string password);
+
+        User GetUserById(int id);
+        User GetUserByEmail(string email);
     }
 }

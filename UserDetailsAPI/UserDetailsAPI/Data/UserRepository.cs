@@ -17,15 +17,27 @@ namespace UserDetailsAPI.Data
 
         public User CheckUserLogin(string email, string password)
         {
-          var user =  _context.User.FirstOrDefault(x => x.UserEmail.ToLower().Equals(email.ToLower()) && x.Password.ToLower().Equals(password.ToLower()));
+          var user =  _context.Users.FirstOrDefault(x => x.UserEmail.ToLower().Equals(email.ToLower()) && x.Password.ToLower().Equals(password.ToLower()));
            return user;
         }
 
         public User Create(User user)
         {
-            _context.User.Add(user);
+            _context.Users.Add(user);
             user.Id = _context.SaveChanges();
 
+            return user;
+        }
+
+        public User GetUserById(int id)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            return user;
+        }
+        
+        public User GetUserByEmail(string email)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.UserEmail.ToLower().Equals(email.ToLower()));
             return user;
         }
     }

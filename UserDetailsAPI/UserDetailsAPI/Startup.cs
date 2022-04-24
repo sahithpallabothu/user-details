@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UserDetailsAPI.Data;
+using UserDetailsAPI.Helpers;
 using UserDetailsAPI.Models;
 
 namespace UserDetailsAPI
@@ -27,11 +28,13 @@ namespace UserDetailsAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddDbContext<UserDetailsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDetailsDB")));
             
             //Implementing Dependency Injection
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<JWTHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +47,12 @@ namespace UserDetailsAPI
 
             app.UseRouting();
 
+            app.UseCors(options => options
+            .WithOrigins(new[] { "http://localhost:3000"})
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            );
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

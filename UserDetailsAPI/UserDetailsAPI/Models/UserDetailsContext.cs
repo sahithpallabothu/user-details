@@ -17,7 +17,7 @@ namespace UserDetailsAPI.Models
         {
         }
 
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +33,7 @@ namespace UserDetailsAPI.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.ToTable("User");
 
                 entity.Property(e => e.Gender)
                     .IsRequired()
